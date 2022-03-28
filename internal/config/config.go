@@ -14,7 +14,7 @@ const (
 	filename = ".env"
 )
 
-func Load() (Config, error) {
+func Load(file string) (Config, error) {
 	variables, err := godotenv.Read(filename)
 	if err != nil {
 		return Config{}, nil
