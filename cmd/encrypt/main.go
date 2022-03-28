@@ -8,6 +8,8 @@ import (
 	"github.com/ribeirohugo/go_file_encrypt/internal/encrypter"
 )
 
+const envFile = ".env"
+
 func main() {
 	arguments := os.Args
 
@@ -18,7 +20,7 @@ func main() {
 	decryptedFilePath := arguments[1]
 	encryptedFilePath := arguments[2]
 
-	cfg, err := config.Load()
+	cfg, err := config.Load(envFile)
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
