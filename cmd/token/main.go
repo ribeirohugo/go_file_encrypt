@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"os"
 	"strconv"
+	"time"
 )
 
 const (
@@ -29,13 +30,15 @@ func main() {
 	fmt.Printf("GENERATED %d bytes TOKEN:\n%s", tokenLength, token)
 }
 
+var seededRand = rand.New(rand.NewSource(time.Now().UnixNano()))
+
 // Method logic retrieve from here:
-// https://stackoverflow.com/questions/22892120/how-to-generate-a-random-string-of-a-fixed-length-in-go/22892986
+// https://www.calhoun.io/creating-random-strings-in-go/
 func generateToken(length int) string {
 	b := make([]byte, length)
 
 	for i := range b {
-		b[i] = characters[rand.Intn(len(characters))]
+		b[i] = characters[seededRand.Intn(len(characters))]
 	}
 
 	return string(b)
