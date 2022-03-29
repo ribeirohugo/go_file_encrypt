@@ -10,12 +10,10 @@ type Config struct {
 const (
 	envIV  = "IV"
 	envKey = "KEY"
-
-	filename = ".env"
 )
 
 func Load(file string) (Config, error) {
-	variables, err := godotenv.Read(filename)
+	variables, err := godotenv.Read(file)
 	if err != nil {
 		return Config{}, nil
 	}
